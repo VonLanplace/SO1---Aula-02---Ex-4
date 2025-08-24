@@ -34,6 +34,8 @@ No package **controller**, devemos ter :
 
 - O método **actionPerformed** deve proceder um ``dispose()`` da tela.
 
+<img src="./Imagens/figura1.png" width="50%" alt="Descrição" />
+
 ### Dicas:
 
 **Assistir, no site do Professor, os vídeos:**
