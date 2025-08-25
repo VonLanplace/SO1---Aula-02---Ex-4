@@ -1,6 +1,8 @@
 package view;
 
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -9,6 +11,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+
+import controller.SearchController;
 
 public class MainScreen extends JFrame {
 
@@ -58,14 +62,26 @@ public class MainScreen extends JFrame {
 		contentPane.add(btnOk);
 
 		btnCancel = new JButton("Cancelar");
+		btnCancel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btnCancel.setBounds(260, 85, 106, 27);
 		contentPane.add(btnCancel);
 
 		btnSearch = new JButton("Procurar");
+		btnSearch.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				SearchController search = new SearchController(textPath);
+				search.actionPerformed();
+				textPath = search.getCaminhoArquivo();
+			}
+		});
 		btnSearch.setBounds(378, 85, 106, 27);
 		contentPane.add(btnSearch);
 
 		textPath = new JTextField();
+		textPath.setText(System.getProperty("user.home") + "/Desktop");
 		textPath.setBounds(184, 52, 300, 21);
 		contentPane.add(textPath);
 		textPath.setColumns(10);

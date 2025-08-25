@@ -20,7 +20,7 @@ No package **controller**, devemos ter :
 
 1) Uma classe, chamada **SearchController**, que receba o *JTextField* pelo construtor, implementa um *ActionListener* para executar a ação do botão Procurar. 
 
-- No método **ActionPerformed**, deve ter uma busca de arquivos executáveis Windows, via *JFileChooser*, e seleciona o arquivo a ser executado e escreve seu caminho completo no *JTextField*.
+- No método **actionPerformed**, deve ter uma busca de arquivos executáveis Windows, via *JFileChooser*, e seleciona o arquivo a ser executado e escreve seu caminho completo no *JTextField*.
 
 2) Uma classe, chamada **RunController**, que receba o *JTextField* e o próprio *JFrame* da tela pelo construtor, implementa um *ActionListener* para executar a ação do botão OK. 
 
