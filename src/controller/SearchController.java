@@ -1,5 +1,7 @@
 package controller;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
 
 import javax.swing.JFileChooser;
@@ -16,7 +18,7 @@ public class SearchController {
 
 	}
 
-	public void actionPerformed() {
+	private void searchPerform() {
 		FileNameExtensionFilter filtro = new FileNameExtensionFilter("Arquivos Executáveis (.exe)", "sh");
 
 		if (diretorioBase.isEmpty()) {
@@ -37,6 +39,15 @@ public class SearchController {
 			caminhoArquivo = choose.getSelectedFile().getAbsolutePath();
 			this.caminhoArquivo.setText(caminhoArquivo);
 		}
+	}
+
+	public ActionListener getListener() {
+		return new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				searchPerform();
+			}
+		};
 	}
 
 	public String getDiretorioBase() {

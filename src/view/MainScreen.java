@@ -1,8 +1,6 @@
 package view;
 
 import java.awt.EventQueue;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -12,6 +10,8 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
+import controller.CancelController;
+import controller.RunController;
 import controller.SearchController;
 
 public class MainScreen extends JFrame {
@@ -62,21 +62,10 @@ public class MainScreen extends JFrame {
 		contentPane.add(btnOk);
 
 		btnCancel = new JButton("Cancelar");
-		btnCancel.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
 		btnCancel.setBounds(260, 85, 106, 27);
 		contentPane.add(btnCancel);
 
 		btnSearch = new JButton("Procurar");
-		btnSearch.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				SearchController search = new SearchController(textPath);
-				search.actionPerformed();
-				textPath = search.getCaminhoArquivo();
-			}
-		});
 		btnSearch.setBounds(378, 85, 106, 27);
 		contentPane.add(btnSearch);
 
@@ -90,5 +79,13 @@ public class MainScreen extends JFrame {
 		lblAbrir.setBounds(144, 54, 40, 17);
 		contentPane.add(lblAbrir);
 
+		SearchController busca = new SearchController(textPath);
+		btnSearch.addActionListener(busca.getListener());
+
+		RunController run = new RunController(textPath, null);
+		btnOk.addActionListener(run.getListener());
+
+		CancelController cancel = new CancelController(null);
+		btnCancel.addActionListener(cancel.getListener());
 	}
 }
