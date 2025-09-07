@@ -19,7 +19,7 @@ public class SearchController {
 	}
 
 	private void searchPerform() {
-		FileNameExtensionFilter filtro = new FileNameExtensionFilter("Arquivos Executáveis (.exe)", "sh");
+		FileNameExtensionFilter filtro = new FileNameExtensionFilter("Arquivos Executáveis (.exe)", "exe");
 
 		if (diretorioBase.isEmpty()) {
 			diretorioBase = System.getProperty("user.home") + "/Desktop";
@@ -39,6 +39,10 @@ public class SearchController {
 			caminhoArquivo = choose.getSelectedFile().getAbsolutePath();
 			this.caminhoArquivo.setText(caminhoArquivo);
 		}
+	}
+
+	private String os() {
+		return System.getProperty("os.name");
 	}
 
 	public ActionListener getListener() {

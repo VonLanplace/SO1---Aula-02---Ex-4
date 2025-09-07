@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -82,10 +83,19 @@ public class MainScreen extends JFrame {
 		SearchController busca = new SearchController(textPath);
 		btnSearch.addActionListener(busca.getListener());
 
-		RunController run = new RunController(textPath, null);
+		RunController run = new RunController(textPath, this);
 		btnOk.addActionListener(run.getListener());
 
-		CancelController cancel = new CancelController(null);
+		CancelController cancel = new CancelController(this);
 		btnCancel.addActionListener(cancel.getListener());
+	}
+
+	public void showErr(String e) {
+		String[] e1 = e.split(":");
+		StringBuffer message = new StringBuffer();
+		for (String linha : e1) {
+			message.append(linha).append(":\n").append("\t");
+		}
+		JOptionPane.showMessageDialog(this, message.toString(), "Erro de Processamento", JOptionPane.ERROR_MESSAGE);
 	}
 }

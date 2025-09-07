@@ -3,21 +3,26 @@ package controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JFrame;
 import javax.swing.JTextField;
 
-public class RunController {
-	JTextField textPath;
+import view.MainScreen;
 
-	public RunController(JTextField textPath, JFrame frame) {
+public class RunController {
+	private JTextField textPath;
+	private MainScreen frame;
+
+	public RunController(JTextField textPath, MainScreen frame) {
 		this.textPath = textPath;
+		this.frame = frame;
 		// TODO Auto-generated constructor stub
 	}
 
-	private void runPerform() {
+	private void runPerform() throws Exception {
 		try {
+			frame.setVisible(false);
 			String[] command = textPath.getText().split(" ");
-			Process process = Runtime.getRuntime().exec(command);
+			Runtime.getRuntime().exec(command);
+			frame.dispose();
 
 		} catch (Exception e) {
 			String msg = e.getMessage();
@@ -30,7 +35,7 @@ public class RunController {
 				runPerform();
 
 			} else {
-				System.err.println(msg);
+				throw e;
 			}
 		}
 	}
@@ -39,10 +44,12 @@ public class RunController {
 		return new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+
 				try {
 					runPerform();
-				} catch (Exception er) {
-					// TODO: handle exception
+				} catch (Exception e1) {
+					frame.showErr(e1.getMessage());
+					frame.setVisible(true);
 				}
 			}
 		};

@@ -3,23 +3,33 @@ package controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JFrame;
+import view.MainScreen;
 
 public class CancelController {
-	public CancelController(JFrame frame) {
+	private MainScreen frame;
+
+	public CancelController(MainScreen frame) {
+		this.frame = frame;
 		// TODO Auto-generated constructor stub
 	}
 
-	private void cancelPerform() {
-		System.out.println(true);
-		// TODO
+	private void cancelPerform() throws Exception {
+		try {
+			frame.dispose();
+		} catch (Exception e) {
+			throw e;
+		}
 	}
 
 	public ActionListener getListener() {
 		return new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				cancelPerform();
+				try {
+					cancelPerform();
+				} catch (Exception e1) {
+					frame.showErr(e1.getMessage());
+				}
 			}
 		};
 	}
